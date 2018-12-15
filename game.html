@@ -39,9 +39,34 @@ var gameOver = function() {
   clearInterval(intervaLId);
   ctx.font = "60 Courier";
   ctx.fillStyle = "Black";
-  ctx.textAlign = 
-}
+  ctx.textAlign = "center";
+  ctx.baseLine = "middle";
+  ctx.fillText("gameOver", width / 2, height / 2);
+};
 
+var circle = function (x, y, radius, fillCircle) {
+  ctx.beginpath();
+  ctx.arc(x, y, radius, 0, math.PI * 2, false);
+  if (fillCircle) {
+    ctx.fill();
+  } else {
+    ctx.stroke();
+  }
+};
+
+var Block = function (col,row) {
+  this.col = col;
+  this.row = row;
+};
+
+Block.prototype.drawsquare = function (color) {
+  var x = this.col * blockSize;
+  var y = this.row * blockSize;
+  ctx.fillStyle = color;
+  ctx.fillRect(x, y, blockSize, blockSize);
+};
+
+Block
 
 
 
