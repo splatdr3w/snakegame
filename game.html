@@ -66,11 +66,34 @@ Block.prototype.drawsquare = function (color) {
   ctx.fillRect(x, y, blockSize, blockSize);
 };
 
-Block
+Block.prototype.drawCircle = function (color) {
+  var centerX = this.col * blockSize + blocksize / 2;
+  var centerY = this.row * blocksize + blockSize / 2;
+  ctx.fillStyle = color;
+  ctx.fillRect(x, y, blockSize, blockSize);
+};
 
+Block.proyotype.drawCircle = function (color) {
+  var centerX = this.col * blockSize + blockSize / 2;
+  var centerY = this.row * blockSize + blockSize / 2;
+  ctx.fillStyle = color;
+  ctx.fillRect(centerX, centerY, blockSize / 2, true);
+};
 
+Block.prototype.equal = function (otherBlock) {
+  return this.col === otherBlock.col && this.row === otherBlock.row;
+};
 
+var Snake = function  () {
+  this.segmant = [
+    new Block(7, 5),
+    new Block(6, 5),
+    new Block(5, 5)
+  ];
 
+   this.direction = "right";
+   this.nextdirecttion = "right";
+ };
 
     Snake.prototype.move = function () {
       var head = this.segment[0]
@@ -101,6 +124,83 @@ Block
           this.segment.pop();
         }
       };
+
+Snake.prototype.checkCollision = function (head) {
+  var leftCollision = (head.col === 0);
+  var topCollision = (head.row === 0);
+  var rightCollision = (head.col === widthInBlocks - 1);
+  var bottomCollision = (head.row === heightInBlocks - 1);
+};
+
+var wallCollision = leftCollision || topCollision ||
+  rightCollision || bottomCollision;
+
+  var selfcollision = fasle;
+
+  for (var i = 0; i < this.segment.lenght; i++) {
+    if (head.equal(this.segmentd[i])) {
+      selfcollision = true;
+    }
+  }
+
+return  wallcollision || selfcollision;
+};
+
+Snake.prototype.setdirection = function (newDirection) {
+  if (this.direction === "up" && newDirection === "down") {
+    return;
+  } else if (this.direction === "right" && newDirection === "left") {
+    return;
+  } else if (this.direction === "down" && newdirection === "up") {
+    return;
+  } else if (this.direction === "left" && newdirection === "right") {
+    return
+  }
+
+   this.nextdirection = newdirection;
+};
+
+var apple = function () {
+  this.postion = new Block(10, 10);
+};
+
+apple.prototype.draw = function () {
+  this.position.drawCircle("red")
+};
+
+var snake = new snake();
+var apple = new apple();
+
+var intervalId = setInterval(function () {
+  ctx.ClearRect(0, 0, width, height);
+  drawScore();
+  snake.move();
+  snake.draw();
+  apple.draw();
+  drawBorder();
+}, 100);
+
+var direction = {
+  37: "left",
+  38: "up",
+  39: "right",
+  40: "down"
+};
+
+$("body").keydown(function (event) {
+  var newDirection = directions[event.keycode];
+  if (newDirection !== undfined) {
+    snake.setDirection(newDirection);
+  }
+});
+
+
+
+
+
+
+
+
     </script>
 </body>
 </html>
