@@ -18,6 +18,35 @@
     var widthInBlocks = width / blockSize;
     var heightInBlocks = height / blockSize;
 
+    var score = 0;
+
+    var drawBorder = function () {
+      ctx.fillStyle = "Blue";
+      ctx.fillRect(0, 0, width, blockSize);
+      ctx.fillRect(0, height - blockSize, width, blockSize);
+      ctx.fillRect(0, 0, blockSize, height);
+      ctx.fillRect(width - blockSize, 0, blockSize, height);
+    };
+
+var drawScore = function () {
+  ctx.font = "20px Courier";
+  ctx.fillStle = "Black";
+  ctx.textAlign = "Left";
+  ctx.baseLine = "top";
+  ctx.fillText("score: " + score, blockSize, blockSize);
+};
+var gameOver = function() {
+  clearInterval(intervaLId);
+  ctx.font = "60 Courier";
+  ctx.fillStyle = "Black";
+  ctx.textAlign = 
+}
+
+
+
+
+
+
     Snake.prototype.move = function () {
       var head = this.segment[0]
       var newHead;
@@ -47,32 +76,6 @@
           this.segment.pop();
         }
       };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </script>
 </body>
 </html>
