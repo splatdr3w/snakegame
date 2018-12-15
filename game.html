@@ -7,10 +7,72 @@
 <body>
     <canvas id="canvas" width="400" height="400" ></canvas>
 
-    <script src="https://code.jquery.com/jquery-2.1.0js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.0js">
+    var canvas = document.getElementbyid("canvas");
+    var ctx = canvas.getContext("2d");
 
-    <script>
-      
-    <script>
+    var width = canvas.width;
+    var height = canvas.height;
+
+    var blockSize = 10:
+    var widthInBlocks = width / blockSize;
+    var heightInBlocks = height / blockSize;
+
+    Snake.prototype.move = function () {
+      var head = this.segment[0]
+      var newHead;
+
+      this direction = this nextDirection;
+
+      if (this.direction === "right") {
+        newHead = new Block(head.col + 1, head.row);
+      } else if (this.direction === "down") {
+        newHead = new  Block(head.col, head.row +1);
+      } else if (this.direction === "left") {
+        newHead = new Block(head.col -1, head.row);
+      } else if (this.direction === "up") {
+        new head = new Block(head.col, head.row - 1);
+      }
+        if (this.checkCollision(newHead)) {
+          gameOver();
+          return;
+        }
+
+        this .segment.unshift(newHead));
+
+        if (newHead.equal(apple.postion)) {
+          score++;
+          apple.move();
+        } else {
+          this.segment.pop();
+        }
+      };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
 </body>
 </html>
